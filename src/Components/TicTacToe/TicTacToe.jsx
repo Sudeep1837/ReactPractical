@@ -301,8 +301,7 @@ const TicTacToe = () => {
         Tic Tac Toe <span>Deluxe</span>
       </h1>
       <p className="subtitle">
-        Animated board, live score, popup winner, theme switch, and sound
-        effects.
+       Ye sab toh thik hai laude bachon ke game khelne aya hai kya ..  gaand mein dam hai toh ma chuda ke dikha 
       </p>
 
       <div className="game-card">
