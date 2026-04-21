@@ -308,17 +308,17 @@ const TicTacToe = () => {
         Tic Tac Toe <span>Deluxe</span>
       </h1>
 
-      <p className="subtitle">
-        {subtitleText.split(" ").map((word, index) => (
-          <span
-            key={index}
-            className="subtitle-word"
-            style={{ animationDelay: `${index * 0.08}s` }}
-          >
-            {word}&nbsp;
-          </span>
-        ))}
-      </p>
+     <p className="subtitle">
+  {subtitleText.split(" ").map((word, index) => (
+    <span
+      key={index}
+      className="subtitle-word"
+      style={{ animationDelay: `${index * 0.08}s` }}
+    >
+      {word}&nbsp;
+    </span>
+  ))}
+</p>
 
       <div className="game-card">
         {!gameStarted ? (

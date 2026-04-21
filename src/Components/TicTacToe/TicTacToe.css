@@ -693,3 +693,51 @@ body {
     font-size: 24px;
   }
 }
+
+.subtitle {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 14px 22px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.subtitle-word {
+  display: inline-block;
+  animation: subtitleBounce 1.8s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
+}
+
+@keyframes subtitleBounce {
+  0% {
+    transform: translateY(0px) scale(1);
+    color: #ffffff;
+  }
+  25% {
+    transform: translateY(-8px) scale(1.08);
+    color: #26ffcb;
+  }
+  50% {
+    transform: translateY(0px) scale(1);
+    color: #ffffff;
+  }
+  75% {
+    transform: translateY(6px) scale(0.98);
+    color: #7dfcff;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    color: #ffffff;
+  }
+}
