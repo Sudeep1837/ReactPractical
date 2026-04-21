@@ -46,16 +46,16 @@ const TicTacToe = () => {
     const roasts = [
       `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
       `${loserName}, aaj toh teri solid beizzati ho gayi. ${winnerName} ne scene khatam kar diya.. nanga kardia tereko abb tera nudes viral hoga.`,
-      `${winnerName} ne ${loserName} ko aise haraya jaise easy mode bhi mushkil ho.`,
-      `${loserName}, tera game plan loading me hi atak gaya lagta hai.`,
-      `${winnerName} ne aaj ${loserName} ko proper tutorial de diya.`,
-      `${loserName}, itna weak gameplay dekh ke board bhi disappoint ho gaya.`,
-      `${winnerName} ne bas match nahi jeeta, ${loserName} ka confidence bhi le gaya.`,
-      `${loserName}, bhai practice karke aana tha... seedha beizzati lene kyun aa gaya?`,
-      `${winnerName} too strong. ${loserName} full washed in this round.`,
-      `${loserName}, tera gameplay dekh ke lag raha tha tu opponent ko nahi, khud ko hara raha hai.`,
-      `${winnerName} ne ${loserName} ko itna clean haraya ki replay bhi sharma jaaye.`,
-      `${loserName}, aaj tera luck bhi bol raha hoga: bhai main nikalta hoon.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},  Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName}, Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
     ];
 
     return roasts[Math.floor(Math.random() * roasts.length)];
