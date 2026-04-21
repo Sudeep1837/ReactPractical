@@ -25,6 +25,7 @@ const TicTacToe = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [theme, setTheme] = useState("dark");
+  const [finalRoast, setFinalRoast] = useState("");
 
   const [val1, setVal1] = useState("");
   const [val2, setVal2] = useState("");
@@ -38,10 +39,13 @@ const TicTacToe = () => {
   const player1 = val1.trim() || "Player 1";
   const player2 = val2.trim() || "Player 2";
 
+  const subtitleText =
+    "Ye sab toh thik hai laude bachon ke game khelne aya hai kya .. gaand mein dam hai toh ma chuda ke dikha .. Hilana ata hai kya be hila toh dam hai agar ..";
+
   const getRoastMessage = (winnerName, loserName) => {
     const roasts = [
-      `${loserName}, bhai tu khelne aaya tha ya sirf boxes fill karne? ${winnerName} ne full dhulai kar di.`,
-      `${loserName}, aaj toh teri solid beizzati ho gayi. ${winnerName} ne scene khatam kar diya.`,
+      `${loserName}, bhai tu khelne aaya tha ya sirf boxes fill karne maghia tu maa chuda? ${winnerName} ne full dhulai kar di.`,
+      `${loserName}, aaj toh teri solid beizzati ho gayi. tera lund chota hai maghia chal pada patha kor ${winnerName} ne scene khatam kar diya.`,
       `${winnerName} ne ${loserName} ko aise haraya jaise easy mode bhi mushkil ho.`,
       `${loserName}, tera game plan loading me hi atak gaya lagta hai.`,
       `${winnerName} ne aaj ${loserName} ko proper tutorial de diya.`,
@@ -169,8 +173,13 @@ const TicTacToe = () => {
     const result = checkWinner(updatedBoard);
 
     if (result) {
+      const winnerName = result.mark === "x" ? player1 : player2;
+      const loserName = result.mark === "x" ? player2 : player1;
+      const roast = getRoastMessage(winnerName, loserName);
+
       setWinner(result.mark);
       setWinningCells(result.pattern);
+      setFinalRoast(roast);
       setScores((prev) => ({
         ...prev,
         [result.mark]: prev[result.mark] + 1,
@@ -186,6 +195,7 @@ const TicTacToe = () => {
 
     if (updatedBoard.every((cell) => cell !== "")) {
       setIsDraw(true);
+      setFinalRoast("");
       setScores((prev) => ({
         ...prev,
         draws: prev.draws + 1,
@@ -209,6 +219,7 @@ const TicTacToe = () => {
     setIsDraw(false);
     setWinningCells([]);
     setShowPopup(false);
+    setFinalRoast("");
   };
 
   const resetAll = () => {
@@ -219,6 +230,7 @@ const TicTacToe = () => {
     setWinningCells([]);
     setGameStarted(false);
     setShowPopup(false);
+    setFinalRoast("");
     setScores({
       x: 0,
       o: 0,
@@ -235,26 +247,21 @@ const TicTacToe = () => {
     setIsDraw(false);
     setWinningCells([]);
     setShowPopup(false);
+    setFinalRoast("");
     setGameStarted(true);
   };
 
   const statusMessage = useMemo(() => {
     if (!gameStarted) return "Enter player names and start the fun!";
     if (winner === "x") {
-      return `🏆 ${getWinnerExtraLine(player1)} ${getRoastMessage(
-        player1,
-        player2
-      )}`;
+      return `🏆 ${getWinnerExtraLine(player1)} ${finalRoast}`;
     }
     if (winner === "o") {
-      return `🏆 ${getWinnerExtraLine(player2)} ${getRoastMessage(
-        player2,
-        player1
-      )}`;
+      return `🏆 ${getWinnerExtraLine(player2)} ${finalRoast}`;
     }
     if (isDraw) return "🤝 It’s a draw!";
     return isXTurn ? `❌ ${player1}'s turn` : `⭕ ${player2}'s turn`;
-  }, [gameStarted, winner, isDraw, isXTurn, player1, player2]);
+  }, [gameStarted, winner, isDraw, isXTurn, player1, player2, finalRoast]);
 
   const popupTitle = winner
     ? winner === "x"
@@ -264,8 +271,8 @@ const TicTacToe = () => {
 
   const popupText = winner
     ? winner === "x"
-      ? `${getWinnerExtraLine(player1)} ${getRoastMessage(player1, player2)}`
-      : `${getWinnerExtraLine(player2)} ${getRoastMessage(player2, player1)}`
+      ? `${getWinnerExtraLine(player1)} ${finalRoast}`
+      : `${getWinnerExtraLine(player2)} ${finalRoast}`
     : "Nobody lost this one. Play again and break the tie!";
 
   const renderIcon = (value) => {
@@ -300,8 +307,17 @@ const TicTacToe = () => {
       <h1 className="title">
         Tic Tac Toe <span>Deluxe</span>
       </h1>
+
       <p className="subtitle">
-       Ye sab toh thik hai laude bachon ke game khelne aya hai kya ..  gaand mein dam hai toh ma chuda ke dikha 
+        {subtitleText.split(" ").map((word, index) => (
+          <span
+            key={index}
+            className="subtitle-word"
+            style={{ animationDelay: `${index * 0.08}s` }}
+          >
+            {word}&nbsp;
+          </span>
+        ))}
       </p>
 
       <div className="game-card">
