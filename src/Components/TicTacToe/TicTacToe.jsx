@@ -38,6 +38,29 @@ const TicTacToe = () => {
   const player1 = val1.trim() || "Player 1";
   const player2 = val2.trim() || "Player 2";
 
+  const getRoastMessage = (winnerName, loserName) => {
+    const roasts = [
+      `${loserName}, bhai tu khelne aaya tha ya sirf boxes fill karne? ${winnerName} ne full dhulai kar di.`,
+      `${loserName}, aaj toh teri solid beizzati ho gayi. ${winnerName} ne scene khatam kar diya.`,
+      `${winnerName} ne ${loserName} ko aise haraya jaise easy mode bhi mushkil ho.`,
+      `${loserName}, tera game plan loading me hi atak gaya lagta hai.`,
+      `${winnerName} ne aaj ${loserName} ko proper tutorial de diya.`,
+      `${loserName}, itna weak gameplay dekh ke board bhi disappoint ho gaya.`,
+      `${winnerName} ne bas match nahi jeeta, ${loserName} ka confidence bhi le gaya.`,
+      `${loserName}, bhai practice karke aana tha... seedha beizzati lene kyun aa gaya?`,
+      `${winnerName} too strong. ${loserName} full washed in this round.`,
+      `${loserName}, tera gameplay dekh ke lag raha tha tu opponent ko nahi, khud ko hara raha hai.`,
+      `${winnerName} ne ${loserName} ko itna clean haraya ki replay bhi sharma jaaye.`,
+      `${loserName}, aaj tera luck bhi bol raha hoga: bhai main nikalta hoon.`,
+    ];
+
+    return roasts[Math.floor(Math.random() * roasts.length)];
+  };
+
+  const getWinnerExtraLine = (winnerName) => {
+    return `${winnerName} wins the match. Absolute menace on the board.`;
+  };
+
   const playTone = (frequency, duration = 0.12, type = "sine") => {
     try {
       const AudioContextClass =
@@ -217,8 +240,18 @@ const TicTacToe = () => {
 
   const statusMessage = useMemo(() => {
     if (!gameStarted) return "Enter player names and start the fun!";
-    if (winner === "x") return `🏆 ${player1} wins this round!`;
-    if (winner === "o") return `🏆 ${player2} wins this round!`;
+    if (winner === "x") {
+      return `🏆 ${getWinnerExtraLine(player1)} ${getRoastMessage(
+        player1,
+        player2
+      )}`;
+    }
+    if (winner === "o") {
+      return `🏆 ${getWinnerExtraLine(player2)} ${getRoastMessage(
+        player2,
+        player1
+      )}`;
+    }
     if (isDraw) return "🤝 It’s a draw!";
     return isXTurn ? `❌ ${player1}'s turn` : `⭕ ${player2}'s turn`;
   }, [gameStarted, winner, isDraw, isXTurn, player1, player2]);
@@ -230,7 +263,9 @@ const TicTacToe = () => {
     : "It’s a Draw!";
 
   const popupText = winner
-    ? "That was a brilliant round. Ready for the next one?"
+    ? winner === "x"
+      ? `${getWinnerExtraLine(player1)} ${getRoastMessage(player1, player2)}`
+      : `${getWinnerExtraLine(player2)} ${getRoastMessage(player2, player1)}`
     : "Nobody lost this one. Play again and break the tie!";
 
   const renderIcon = (value) => {
@@ -246,7 +281,11 @@ const TicTacToe = () => {
   };
 
   return (
-    <div className={`container ${theme === "light" ? "theme-light" : "theme-dark"}`}>
+    <div
+      className={`container ${
+        theme === "light" ? "theme-light" : "theme-dark"
+      }`}
+    >
       <div className="floating-shape shape1"></div>
       <div className="floating-shape shape2"></div>
       <div className="floating-shape shape3"></div>
@@ -261,7 +300,10 @@ const TicTacToe = () => {
       <h1 className="title">
         Tic Tac Toe <span>Deluxe</span>
       </h1>
-      <p className="subtitle">Animated board, live score, popup winner, theme switch, and sound effects.</p>
+      <p className="subtitle">
+        Animated board, live score, popup winner, theme switch, and sound
+        effects.
+      </p>
 
       <div className="game-card">
         {!gameStarted ? (
@@ -317,7 +359,9 @@ const TicTacToe = () => {
                 {board.slice(0, 3).map((value, index) => (
                   <div
                     key={index}
-                    className={`boxes ${winningCells.includes(index) ? "win-box" : ""}`}
+                    className={`boxes ${
+                      winningCells.includes(index) ? "win-box" : ""
+                    }`}
                     onClick={() => handleBoxClick(index)}
                   >
                     {renderIcon(value)}
@@ -329,7 +373,9 @@ const TicTacToe = () => {
                 {board.slice(3, 6).map((value, index) => (
                   <div
                     key={index + 3}
-                    className={`boxes ${winningCells.includes(index + 3) ? "win-box" : ""}`}
+                    className={`boxes ${
+                      winningCells.includes(index + 3) ? "win-box" : ""
+                    }`}
                     onClick={() => handleBoxClick(index + 3)}
                   >
                     {renderIcon(value)}
@@ -341,7 +387,9 @@ const TicTacToe = () => {
                 {board.slice(6, 9).map((value, index) => (
                   <div
                     key={index + 6}
-                    className={`boxes ${winningCells.includes(index + 6) ? "win-box" : ""}`}
+                    className={`boxes ${
+                      winningCells.includes(index + 6) ? "win-box" : ""
+                    }`}
                     onClick={() => handleBoxClick(index + 6)}
                   >
                     {renderIcon(value)}
