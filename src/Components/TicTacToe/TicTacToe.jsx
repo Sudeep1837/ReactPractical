@@ -44,8 +44,8 @@ const TicTacToe = () => {
 
   const getRoastMessage = (winnerName, loserName) => {
     const roasts = [
-      `${loserName}, bhai tu khelne aaya tha ya sirf boxes fill karne maghia tu maa chuda? ${winnerName} ne full dhulai kar di.`,
-      `${loserName}, aaj toh teri solid beizzati ho gayi. tera lund chota hai maghia chal pada patha kor ${winnerName} ne scene khatam kar diya.`,
+      `${loserName},Maghia tu pehle apna gf ka nam bata mein pehle pelunga tu chaka hai sala.. bhai tu khelne aaya tha ya sirf boxes fill karne?.. lund kuch ata hai tereko ${winnerName} ne full dhulai kar di.`,
+      `${loserName}, aaj toh teri solid beizzati ho gayi. ${winnerName} ne scene khatam kar diya.. nanga kardia tereko abb tera nudes viral hoga.`,
       `${winnerName} ne ${loserName} ko aise haraya jaise easy mode bhi mushkil ho.`,
       `${loserName}, tera game plan loading me hi atak gaya lagta hai.`,
       `${winnerName} ne aaj ${loserName} ko proper tutorial de diya.`,
@@ -269,11 +269,11 @@ const TicTacToe = () => {
       : `${player2} Wins!`
     : "It’s a Draw!";
 
-  const popupText = winner
+  const popupWinnerLine = winner
     ? winner === "x"
-      ? `${getWinnerExtraLine(player1)} ${finalRoast}`
-      : `${getWinnerExtraLine(player2)} ${finalRoast}`
-    : "Nobody lost this one. Play again and break the tie!";
+      ? getWinnerExtraLine(player1)
+      : getWinnerExtraLine(player2)
+    : "";
 
   const renderIcon = (value) => {
     if (value === "x") {
@@ -427,10 +427,65 @@ const TicTacToe = () => {
 
       {showPopup && (
         <div className="popup-overlay">
-          <div className="popup">
+          <div
+            className="popup"
+            style={{
+              width: "min(92vw, 560px)",
+              maxWidth: "560px",
+            }}
+          >
             <div className="popup-emoji">{winner ? "🏆" : "🤝"}</div>
             <h2>{popupTitle}</h2>
-            <p>{popupText}</p>
+
+            {winner ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  marginTop: "10px",
+                  marginBottom: "20px",
+                }}
+              >
+                <p
+                  style={{
+                    lineHeight: "1.7",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    overflowWrap: "anywhere",
+                    margin: 0,
+                  }}
+                >
+                  {popupWinnerLine}
+                </p>
+
+                <p
+                  style={{
+                    lineHeight: "1.8",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    overflowWrap: "anywhere",
+                    margin: 0,
+                    fontWeight: 600,
+                  }}
+                >
+                  {finalRoast}
+                </p>
+              </div>
+            ) : (
+              <p
+                style={{
+                  lineHeight: "1.7",
+                  whiteSpace: "normal",
+                  wordBreak: "break-word",
+                  overflowWrap: "anywhere",
+                  marginTop: "10px",
+                  marginBottom: "20px",
+                }}
+              >
+                Nobody lost this one. Play again and break the tie!
+              </p>
+            )}
 
             <div className="popup-buttons">
               <button className="primary-btn" onClick={resetRound}>
